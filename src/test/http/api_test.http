@@ -1,0 +1,22 @@
+GET http://localhost:8080/cart/1211
+
+###
+
+POST http://localhost:8080/cart/1211
+content-type: application/json
+
+{
+
+  "items": [
+    {
+      "productId": "ab123",
+      "quantity": 1,
+      "priceEachInDollars": 11.11
+    },
+    {
+      "productId": "xy234",
+      "quantity": 5,
+      "priceEachInDollars": 1.66
+    }
+  ]
+}
