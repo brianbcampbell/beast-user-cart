@@ -1,12 +1,13 @@
-GET http://localhost:8080/cart/1211
+GET http://localhost:8080/
+userid: brian
 
 ###
 
-POST http://localhost:8080/cart/1211
+POST http://localhost:8080/
 content-type: application/json
+userid: brian
 
 {
-
   "items": [
     {
       "productId": "ab123",
