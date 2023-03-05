@@ -1,5 +1,6 @@
 package beast.cart;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static java.time.LocalTime.now;
@@ -7,19 +8,19 @@ import static java.time.LocalTime.now;
 @Service
 class CartService {
 
-//    private final CartRepository cartRepository;
-//
-//    @Autowired
-//    public CartService(CartRepository cartRepository) {
-//        this.cartRepository = cartRepository;
-//    }
+    private final CartRepository cartRepository;
 
+    @Autowired
+    public CartService(CartRepository cartRepository) {
+        this.cartRepository = cartRepository;
+    }
 
     public UserCart getUserCart(String userId) {
-        return new UserCart();
+        return cartRepository.getCart(userId);
     }
 
     public void saveCart(String userId, UserCart cart) {
+        cartRepository.saveCart(userId, cart);
         System.out.println("SAVED CART " + now());
     }
 }
