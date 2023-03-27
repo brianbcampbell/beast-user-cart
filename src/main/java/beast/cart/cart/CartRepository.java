@@ -1,5 +1,6 @@
-package beast.cart;
+package beast.cart.cart;
 
+import beast.cart.models.UserCart;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;

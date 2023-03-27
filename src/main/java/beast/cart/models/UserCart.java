@@ -1,4 +1,4 @@
-package beast.cart;
+package beast.cart.models;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-class UserCart {
+public class UserCart {
 
     private List<CartItem> items=new ArrayList<>();
 

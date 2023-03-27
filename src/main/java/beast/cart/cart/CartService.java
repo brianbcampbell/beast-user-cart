@@ -1,12 +1,13 @@
-package beast.cart;
+package beast.cart.cart;
 
+import beast.cart.models.UserCart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static java.time.LocalTime.now;
 
 @Service
-class CartService {
+public class CartService {
 
     private final CartRepository cartRepository;
 
