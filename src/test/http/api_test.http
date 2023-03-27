@@ -1,11 +1,9 @@
-GET http://localhost:8080/
-userid: brian
+GET http://localhost:8080/api/cart
 
 ###
 
-POST http://localhost:8080/
+POST http://localhost:8080/api/cart
 content-type: application/json
-userid: brian
 
 {
   "items": [
