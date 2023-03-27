@@ -2,8 +2,8 @@ package beast.cart.web;
 
 import beast.cart.user.UserDetailsService;
 import beast.cart.web.jwt.JwtUtils;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import beast.cart.web.payload.request.LoginRequest;
+import beast.cart.web.payload.request.SignupRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
@@ -11,8 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Set;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -85,24 +83,5 @@ public class AuthController {
                 .header(HttpHeaders.SET_COOKIE, cookie.toString())
                 .body("You've been signed out!");
     }
-
-    @Data
-    @NoArgsConstructor
-    public class LoginRequest {
-        private String username;
-
-        private String password;
-    }
-
-    @Data
-    @NoArgsConstructor
-    public class SignupRequest {
-        private String username;
-
-        private String email;
-
-        private Set<String> roles;
-
-        private String password;
-    }
 }
+
