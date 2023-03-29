@@ -1,15 +1,14 @@
 package beast.cart.web;
 
-import beast.cart.user.UserDetailsService;
 import beast.cart.web.jwt.JwtUtils;
 import beast.cart.web.payload.request.LoginRequest;
-import beast.cart.web.payload.request.SignupRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -60,21 +59,21 @@ public class AuthController {
                 .body("Login successful for: " + username);
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@RequestBody SignupRequest req) {
-        try {
-            userService.signup(
-                    req.getUsername(),
-                    req.getPassword(),
-                    req.getEmail(),
-                    req.getRoles()
-            );
-            return ResponseEntity.ok("User " + req.getUsername() + " registered successfully!");
-        } catch (Exception ex) {
-            return ResponseEntity.badRequest()
-                    .body(ex.getMessage());
-        }
-    }
+//    @PostMapping("/signup")
+//    public ResponseEntity<?> registerUser(@RequestBody SignupRequest req) {
+//        try {
+//            userService.signup(
+//                    req.getUsername(),
+//                    req.getPassword(),
+//                    req.getEmail(),
+//                    req.getRoles()
+//            );
+//            return ResponseEntity.ok("User " + req.getUsername() + " registered successfully!");
+//        } catch (Exception ex) {
+//            return ResponseEntity.badRequest()
+//                    .body(ex.getMessage());
+//        }
+//    }
 
     @PostMapping("/signout")
     public ResponseEntity<?> logoutUser() {
