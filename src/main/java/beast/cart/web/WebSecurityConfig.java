@@ -3,6 +3,7 @@ package beast.cart.web;
 import beast.cart.models.UserDetails;
 import beast.cart.web.jwt.AuthEntryPointJwt;
 import beast.cart.web.jwt.AuthTokenFilter;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,8 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.context.annotation.RequestScope;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 @Configuration
 //@EnableWebSecurity

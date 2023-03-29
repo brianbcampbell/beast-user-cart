@@ -1,6 +1,8 @@
 package beast.cart.models;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,6 @@ import java.util.List;
 @Data
 public class UserCart {
 
-    private List<CartItem> items=new ArrayList<>();
+    private List<CartItem> items = new ArrayList<>();
 
 }

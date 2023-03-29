@@ -1,8 +1,6 @@
 package beast.cart.user;
 
 import beast.cart.models.UserDetails;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,7 +8,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -57,22 +56,6 @@ public class UserDetailsService implements org.springframework.security.core.use
         userRepository.save(userRecord);
     }
 
-    final Map<String, ERole> rolesMap = ImmutableMap.of(
-            "admin", ERole.ROLE_ADMIN,
-            "mod", ERole.ROLE_MODERATOR
-            // all else becomes ERole.ROLE_USER
-    );
-
-    private Set<Role> getRoleSet(Collection<String> strRoles) {
-
-        return Optional.ofNullable(strRoles)
-                .orElse(ImmutableSet.of(""))
-                .stream()
-                .map(strRole -> rolesMap.getOrDefault(strRole, ERole.ROLE_USER))
-                .map(e -> roleRepository.findByName(e).get())
-                .collect(Collectors.toSet());
-    }
-
     private UserRecord buildUserRecord(String username, String password, String email, Collection<String> roles) {
         // Create new user's account
         UserRecord userRecord = new UserRecord(
@@ -89,12 +72,11 @@ public class UserDetailsService implements org.springframework.security.core.use
     }
 
     public static UserDetails buildUser(UserRecord userRecord) {
-        List<GrantedAuthority> authorities = userRecord.getRoles().stream()
+        Set<GrantedAuthority> authorities = userRecord.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
 
         return new UserDetails(
-                userRecord.getId(),
                 userRecord.getUsername(),
                 userRecord.getEmail(),
                 userRecord.getPassword(),
