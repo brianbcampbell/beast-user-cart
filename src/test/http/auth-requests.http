@@ -1,0 +1,45 @@
+### PUBLIC test
+// @no-log
+GET http://localhost:8080/api/test/all
+
+### BASIC test
+// @no-log
+GET http://localhost:8080/api/test/user
+
+### MOD test
+// @no-log
+GET http://localhost:8080/api/test/mod
+
+### ADMIN test
+// @no-log
+GET http://localhost:8080/api/test/admin
+
+### sign in
+// @no-log
+POST http://localhost:8080/api/auth/signin
+content-type: application/json
+
+{"username": "bcadmin", "password": "w00tw00t"}
+
+### sign in (WRONG PW)
+// @no-log
+POST http://localhost:8080/api/auth/signin
+content-type: application/json
+
+{"username": "bcadmin", "password": "NOPE"}
+
+### sign up
+// @no-log
+POST http://localhost:8080/api/auth/signup
+content-type: application/json
+
+{
+  "username": "bcadmin",
+  "email": "brian@admin",
+  "password": "w00tw00t",
+  "roles": ["mod","etc"]
+}
+
+### sign out
+// @no-log
+POST http://localhost:8080/api/auth/signout
