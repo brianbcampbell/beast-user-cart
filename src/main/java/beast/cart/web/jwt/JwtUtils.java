@@ -11,6 +11,9 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 
+import javax.crypto.spec.SecretKeySpec;
+import java.security.Key;
+import java.util.Base64;
 import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
@@ -27,6 +30,13 @@ public class JwtUtils {
 
     @Value("${jwt.CookieName}")
     private String jwtCookieName;
+
+    private Key getKey() {
+        return new SecretKeySpec(
+                Base64.getDecoder().decode(jwtSecret),
+                SignatureAlgorithm.HS512.getJcaName()
+        );
+    }
 
     public String getJwtFromCookies(HttpServletRequest request) {
         Cookie cookie = WebUtils.getCookie(request, jwtCookieName);
@@ -47,7 +57,7 @@ public class JwtUtils {
 
     private String generateJwt(UserDetails userDetails) {
         Map<String, Object> claims = ImmutableMap.of(
-//                "authorities", userDetails.getAuthorities(),
+                "authorities", userDetails.getAuthorities(),
                 "email", userDetails.getEmail()
         );
         String jwt = Jwts.builder()
@@ -55,7 +65,7 @@ public class JwtUtils {
                 .addClaims(claims)  // "setClaims" will overwrite subject ^
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .signWith(getKey(), SignatureAlgorithm.HS512)
                 .compact();
         return jwt;
     }
@@ -69,10 +79,12 @@ public class JwtUtils {
 
     public Claims parseClaimsFromJwt(String authToken) {
         try {
-            Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken).getBody();
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKey(getKey())
+                    .build()
+                    .parseClaimsJws(authToken)
+                    .getBody();
             return claims;
-        } catch (SignatureException e) {
-            log.error("Invalid JWT signature: {}", e.getMessage());
         } catch (MalformedJwtException e) {
             log.error("Invalid JWT token: {}", e.getMessage());
         } catch (ExpiredJwtException e) {
@@ -81,6 +93,8 @@ public class JwtUtils {
             log.error("JWT token is unsupported: {}", e.getMessage());
         } catch (IllegalArgumentException e) {
             log.error("JWT claims string is empty: {}", e.getMessage());
+        } catch (Exception e) {
+            log.error("Invalid JWT signature: {}", e.getMessage());
         }
 
         return null;
