@@ -1,5 +1,6 @@
 package beast.cart.web.jwt;
 
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,23 +32,26 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         try {
             String jwt = jwtUtils.getJwtFromCookies(request);
-            if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
-                String username = jwtUtils.getUserNameFromJwtToken(jwt);
+            if (jwt == null) throw new Exception("JWT cookie not found");
 
-                //TODO: pull authorities from token rather than call out to service
-                UserDetails userDetails = userService.loadUserByUsername(username);
+            Claims claims = jwtUtils.parseClaimsFromJwt(jwt);
+            if (claims == null) throw new Exception("JWT cookie could not be parsed");
 
-                UsernamePasswordAuthenticationToken authentication =
-                        new UsernamePasswordAuthenticationToken(
-                                userDetails,
-                                null,
-                                userDetails.getAuthorities()
-                        );
+            //TODO: pull authorities from token rather than call out to service
+            String username = claims.getSubject();
+            UserDetails userDetails = userService.loadUserByUsername(username);
 
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            UsernamePasswordAuthenticationToken authentication =
+                    new UsernamePasswordAuthenticationToken(
+                            userDetails,
+                            null,
+                            userDetails.getAuthorities()
+                    );
 
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-            }
+            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
         } catch (Exception e) {
             log.error("Cannot set user authentication: ", e);
         }
