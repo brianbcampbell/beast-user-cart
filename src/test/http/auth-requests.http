@@ -1,18 +1,3 @@
-### PUBLIC test
-// @no-log
-GET http://localhost:8080/api/test/all
-
-### BASIC test
-// @no-log
-GET http://localhost:8080/api/test/user
-
-### MOD test
-// @no-log
-GET http://localhost:8080/api/test/mod
-
-### ADMIN test
-// @no-log
-GET http://localhost:8080/api/test/admin
 
 ### sign in
 // @no-log
