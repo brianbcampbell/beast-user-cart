@@ -21,8 +21,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.context.annotation.RequestScope;
 
 @Configuration
-//@EnableWebSecurity
-@EnableGlobalMethodSecurity(
+//@EnableWebSecurity    //TODO enable
+@EnableGlobalMethodSecurity(    //TODO remove
         // securedEnabled = true,
         // jsr250Enabled = true,
         prePostEnabled = true)

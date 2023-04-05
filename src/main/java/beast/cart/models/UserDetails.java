@@ -1,16 +1,15 @@
 package beast.cart.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
-@Data
-@AllArgsConstructor
+@Getter
+@Builder
 public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
-    private static final long serialVersionUID = 1L;
 
     private String username;
 

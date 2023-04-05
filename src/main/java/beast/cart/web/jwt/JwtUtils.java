@@ -1,5 +1,7 @@
 package beast.cart.web.jwt;
 
+import beast.cart.models.UserDetails;
+import com.google.common.collect.ImmutableMap;
 import io.jsonwebtoken.*;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 
 import java.util.Date;
+import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -32,19 +35,29 @@ public class JwtUtils {
                 .orElse(null);
     }
 
-    public ResponseCookie generateJwtCookie(String username) {
-        String jwt = Jwts.builder()
-                .setSubject(username)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
-                .compact();
+    public ResponseCookie generateJwtCookie(UserDetails userDetails) {
+        String jwt = generateJwt(userDetails);
         return ResponseCookie
                 .from(jwtCookieName, jwt)
                 .path("/api")
                 .maxAge(24 * 60 * 60)
                 .httpOnly(true)
                 .build();
+    }
+
+    private String generateJwt(UserDetails userDetails) {
+        Map<String, Object> claims = ImmutableMap.of(
+//                "authorities", userDetails.getAuthorities(),
+                "email", userDetails.getEmail()
+        );
+        String jwt = Jwts.builder()
+                .setSubject(userDetails.getUsername())
+                .addClaims(claims)  // "setClaims" will overwrite subject ^
+                .setIssuedAt(new Date())
+                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .compact();
+        return jwt;
     }
 
     public ResponseCookie getCleanJwtCookie() {
@@ -60,7 +73,7 @@ public class JwtUtils {
 
     public boolean validateJwtToken(String authToken) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            Jwt<JwsHeader, Claims> stuff = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
             return true;
         } catch (SignatureException e) {
             log.error("Invalid JWT signature: {}", e.getMessage());

@@ -34,10 +34,10 @@ POST http://localhost:8080/api/auth/signup
 content-type: application/json
 
 {
-  "username": "bcadmin",
-  "email": "brian@admin",
+  "username": "bcadmin2",
+  "email": "brian2@admin",
   "password": "w00tw00t",
-  "roles": ["mod","etc"]
+  "roles": ["ROLE_USER"]
 }
 
 ### sign out

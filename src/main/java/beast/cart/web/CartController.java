@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 class CartController {
 
@@ -21,18 +23,18 @@ class CartController {
         this.cartService = cartService;
     }
 
-    @GetMapping(value = "/api/cart",
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    //    @PreAuthorize("isAuthenticated()")
+    @GetMapping(value = "/api/cart", produces = MediaType.APPLICATION_JSON_VALUE)
     public UserCart getCart(
             @AuthenticationPrincipal UserDetails userDetails
     ) throws Exception {
-        UserCart result = cartService.getUserCart(userDetails.getUsername());
-        return result;
+        UserCart userCart = cartService.getUserCart(userDetails.getUsername());
+        return Optional.ofNullable(userCart).orElse(new UserCart());
+
     }
 
-    @PostMapping(value = "/api/cart",
-            consumes = MediaType.APPLICATION_JSON_VALUE
-    )
+    //    @PreAuthorize("isAuthenticated()")
+    @PostMapping(value = "/api/cart", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void saveCart(
             @RequestBody UserCart cart,
             @AuthenticationPrincipal UserDetails userDetails

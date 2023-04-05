@@ -7,7 +7,6 @@ import lombok.Data;
 @Builder
 class CartItem {
 
-    private String id;
     private String productId;
     private int quantity;
     private float priceEachInDollars;
