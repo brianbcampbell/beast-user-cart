@@ -1,7 +1,7 @@
 
 ### sign out
 // @no-log
-POST http://localhost:8080/api/auth/signout
+GET http://localhost:8080/api/auth/signout
 
 ### sign in
 // @no-log

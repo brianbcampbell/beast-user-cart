@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -22,18 +21,15 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
-    private final UserDetailsService userService;
     private final SignupService signupService;
     private final JwtUtils jwtUtils;
 
     @Autowired
     public AuthController(
-            UserDetailsService userService,
             JwtUtils jwtUtils,
             AuthenticationManager authenticationManager,
             SignupService signupService
     ) {
-        this.userService = userService;
         this.jwtUtils = jwtUtils;
         this.authenticationManager = authenticationManager;
         this.signupService = signupService;
@@ -87,7 +83,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/signout")
+    @GetMapping("/signout")
     public ResponseEntity<?> logoutUser() {
         ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
         return ResponseEntity.ok()
