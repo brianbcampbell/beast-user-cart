@@ -24,8 +24,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static beast.cart._testdata.TestUsers.USER_1_PASSWORD;
-import static beast.cart._testdata.TestUsers.USER_1_USERNAME;
+import static beast.cart._testdata.Users.USER_1_PASSWORD;
+import static beast.cart._testdata.Users.USER_1_USERNAME;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -80,7 +80,7 @@ class AuthControllerTest {
                 .andExpect(header().exists(HttpHeaders.SET_COOKIE))
                 .andReturn();
         Cookie sookie = result.getResponse().getCookie(jwtCookieName);
-        String username = jwtUtils.getUserNameFromJwtToken(sookie.getValue());
+        String username = jwtUtils.parseClaimsFromJwt(sookie.getValue()).getSubject();
         assertEquals(USER_1_USERNAME, username);
     }
 

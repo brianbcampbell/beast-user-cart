@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.*;
 
-import static beast.cart._testdata.TestUsers.ALL_TEST_USERS;
+import static beast.cart._testdata.Users.ALL_TEST_USERS;
 
 
 /**
