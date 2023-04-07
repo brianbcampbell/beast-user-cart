@@ -1,10 +1,10 @@
 package beast.cart.models;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@Builder
+@AllArgsConstructor
 public class CartItem {
 
     private String productId;

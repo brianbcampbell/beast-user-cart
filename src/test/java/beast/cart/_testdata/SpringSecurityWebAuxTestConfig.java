@@ -1,6 +1,5 @@
 package beast.cart._testdata;
 
-import beast.cart._testdata.TestUserDetailsService;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;

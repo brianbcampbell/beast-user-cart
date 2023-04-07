@@ -34,9 +34,9 @@ class CartController {
 
     @PostMapping(value = "/api/cart", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void saveCart(
-            @RequestBody UserCart cart,
-            @AuthenticationPrincipal UserDetails userDetails
-    )  {
+            @AuthenticationPrincipal UserDetails userDetails,
+            @RequestBody UserCart cart
+    ) {
         cartService.saveCart(userDetails.getUsername(), cart);
     }
 

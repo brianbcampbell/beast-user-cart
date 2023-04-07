@@ -67,10 +67,10 @@ class WebSecurityTest {
     @Test
     public void test_signin_success_post() throws Exception {
 
-        LoginRequest loginRequest=new LoginRequest();
+        LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername(USER_1_USERNAME);
         loginRequest.setPassword(USER_1_PASSWORD);
-        String json=new ObjectMapper().writeValueAsString(loginRequest);
+        String json = new ObjectMapper().writeValueAsString(loginRequest);
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .post("/api/auth/signin")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -97,10 +97,10 @@ class WebSecurityTest {
     @Test
 //    @WithUserDetails("username_doesnt_exist")
     public void test_signin_badCredentials_post() throws Exception {
-        LoginRequest loginRequest=new LoginRequest();
+        LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername(USER_1_USERNAME);
         loginRequest.setPassword("nope-wrong.password");
-        String json=new ObjectMapper().writeValueAsString(loginRequest);
+        String json = new ObjectMapper().writeValueAsString(loginRequest);
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .post("/api/auth/signin")
                 .contentType(MediaType.APPLICATION_JSON)

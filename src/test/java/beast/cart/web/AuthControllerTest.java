@@ -83,7 +83,7 @@ class AuthControllerTest {
 
         // VERIFY
         verify(signupService).signup(userDetailsCaptor.capture());
-        assertEquals(USER_1_USERNAME,userDetailsCaptor.getValue().getUsername());
+        assertEquals(USER_1_USERNAME, userDetailsCaptor.getValue().getUsername());
         assertTrue(response.getBody().toString().contains(USER_1_USERNAME));
     }
 

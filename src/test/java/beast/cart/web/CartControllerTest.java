@@ -41,8 +41,8 @@ class CartControllerTest {
 
     @Test
     void test_saveCart() {
-        cartController.saveCart(CART_1,USER_1);
+        cartController.saveCart(USER_1, CART_1);
 
-        verify(cartService).saveCart(USER_1_USERNAME,CART_1);
+        verify(cartService).saveCart(USER_1_USERNAME, CART_1);
     }
 }
