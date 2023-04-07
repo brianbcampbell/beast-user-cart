@@ -23,22 +23,20 @@ class CartController {
         this.cartService = cartService;
     }
 
-    //    @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/api/cart", produces = MediaType.APPLICATION_JSON_VALUE)
     public UserCart getCart(
             @AuthenticationPrincipal UserDetails userDetails
-    ) throws Exception {
+    ) {
         UserCart userCart = cartService.getUserCart(userDetails.getUsername());
         return Optional.ofNullable(userCart).orElse(new UserCart());
 
     }
 
-    //    @PreAuthorize("isAuthenticated()")
     @PostMapping(value = "/api/cart", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void saveCart(
             @RequestBody UserCart cart,
             @AuthenticationPrincipal UserDetails userDetails
-    ) throws Exception {
+    )  {
         cartService.saveCart(userDetails.getUsername(), cart);
     }
 
