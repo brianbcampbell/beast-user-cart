@@ -1,5 +1,6 @@
 package beast.cart.web;
 
+import beast.cart._testdata.SpringSecurityWebAuxTestConfig;
 import beast.cart.user.SignupService;
 import beast.cart.web.jwt.AuthEntryPointJwt;
 import beast.cart.web.jwt.JwtUtils;
@@ -45,7 +46,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         JwtUtils.class,
         AuthEntryPointJwt.class
 })
-class AuthControllerTest {
+class WebSecurityTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -64,7 +65,6 @@ class AuthControllerTest {
 
 
     @Test
-//    @WithUserDetails(USER_1_USERNAME)
     public void test_signin_success_post() throws Exception {
 
         LoginRequest loginRequest=new LoginRequest();
@@ -85,7 +85,6 @@ class AuthControllerTest {
     }
 
     @Test
-//    @WithUserDetails("username_doesnt_exist")
     public void test_signin_badCredentials_get() throws Exception {
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .get("/api/auth/signin")
