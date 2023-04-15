@@ -1,7 +1,7 @@
 package beast.cart.web;
 
 import beast.cart.cart.CartService;
-import beast.cart.models.UserCart;
+import beast.cart.model.UserCart;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

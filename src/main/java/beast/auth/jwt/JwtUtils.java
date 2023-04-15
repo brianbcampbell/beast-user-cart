@@ -1,6 +1,6 @@
-package beast.cart.web.jwt;
+package beast.auth.jwt;
 
-import beast.cart.models.UserDetails;
+import beast.auth.model.UserDetails;
 import com.google.common.collect.ImmutableMap;
 import io.jsonwebtoken.*;
 import jakarta.servlet.http.Cookie;
@@ -57,7 +57,7 @@ public class JwtUtils {
 
     private String generateJwt(UserDetails userDetails) {
         Map<String, Object> claims = ImmutableMap.of(
-                "authorities", userDetails.getAuthorities(),
+                //"authorities", userDetails.getAuthorities(),
                 "email", userDetails.getEmail()
         );
         String jwt = Jwts.builder()

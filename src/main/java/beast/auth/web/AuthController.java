@@ -1,10 +1,10 @@
-package beast.cart.web;
+package beast.auth.web;
 
-import beast.cart.models.UserDetails;
-import beast.cart.user.SignupService;
-import beast.cart.web.jwt.JwtUtils;
-import beast.cart.web.payload.request.LoginRequest;
-import beast.cart.web.payload.request.SignupRequest;
+import beast.auth.jwt.JwtUtils;
+import beast.auth.model.LoginRequest;
+import beast.auth.model.SignupRequest;
+import beast.auth.model.UserDetails;
+import beast.auth.user.SignupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;

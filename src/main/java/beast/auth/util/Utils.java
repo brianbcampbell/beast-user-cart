@@ -1,4 +1,4 @@
-package beast.cart.util;
+package beast.auth.util;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

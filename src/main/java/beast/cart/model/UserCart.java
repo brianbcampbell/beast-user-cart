@@ -1,4 +1,4 @@
-package beast.cart.models;
+package beast.cart.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

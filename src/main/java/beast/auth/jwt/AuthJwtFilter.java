@@ -1,4 +1,4 @@
-package beast.cart.web.jwt;
+package beast.auth.jwt;
 
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
@@ -17,7 +17,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Slf4j
-public class AuthTokenFilter extends OncePerRequestFilter {
+public class AuthJwtFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtils jwtUtils;
 

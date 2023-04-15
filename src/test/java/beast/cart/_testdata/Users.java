@@ -1,6 +1,6 @@
 package beast.cart._testdata;
 
-import beast.cart.models.UserDetails;
+import beast.auth.model.UserDetails;
 
 public class Users {
 

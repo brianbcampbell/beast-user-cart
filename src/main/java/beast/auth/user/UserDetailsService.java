@@ -1,6 +1,6 @@
-package beast.cart.user;
+package beast.auth.user;
 
-import beast.cart.models.UserDetails;
+import beast.auth.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

@@ -1,7 +1,7 @@
-package beast.cart.web;
+package beast.auth.util;
 
-import beast.cart.models.UserDetails;
-import beast.cart.user.SignupService;
+import beast.auth.model.UserDetails;
+import beast.auth.user.SignupService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

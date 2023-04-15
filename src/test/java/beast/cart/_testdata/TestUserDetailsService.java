@@ -1,6 +1,6 @@
 package beast.cart._testdata;
 
-import beast.cart.models.UserDetails;
+import beast.auth.model.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;

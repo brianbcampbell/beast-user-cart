@@ -1,10 +1,11 @@
 package beast.cart.web;
 
+import beast.auth.jwt.AuthEntryPointJwt;
+import beast.auth.jwt.JwtUtils;
+import beast.auth.model.LoginRequest;
+import beast.auth.user.SignupService;
+import beast.auth.web.AuthController;
 import beast.cart._testdata.SpringSecurityWebAuxTestConfig;
-import beast.cart.user.SignupService;
-import beast.cart.web.jwt.AuthEntryPointJwt;
-import beast.cart.web.jwt.JwtUtils;
-import beast.cart.web.payload.request.LoginRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.Test;

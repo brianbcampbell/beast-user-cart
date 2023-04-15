@@ -1,10 +1,11 @@
 package beast.cart.web;
 
-import beast.cart.models.UserDetails;
-import beast.cart.web.jwt.AuthEntryPointJwt;
-import beast.cart.web.jwt.AuthTokenFilter;
+import beast.auth.jwt.AuthEntryPointJwt;
+import beast.auth.jwt.AuthJwtFilter;
+import beast.auth.model.UserDetails;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -22,6 +23,7 @@ import org.springframework.web.context.annotation.RequestScope;
 
 @Configuration
 @EnableWebSecurity
+@ComponentScan("beast.auth.*")
 public class WebSecurityConfig {
 
     @Bean
@@ -31,8 +33,8 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public AuthTokenFilter authenticationJwtTokenFilter() {
-        return new AuthTokenFilter();
+    public AuthJwtFilter authenticationJwtTokenFilter() {
+        return new AuthJwtFilter();
     }
 
     @Bean

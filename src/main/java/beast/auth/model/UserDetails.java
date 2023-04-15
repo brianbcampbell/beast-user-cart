@@ -1,14 +1,18 @@
-package beast.cart.models;
+package beast.auth.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
-@Getter
+@Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
 
     private String username;

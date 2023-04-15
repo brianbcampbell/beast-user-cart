@@ -1,4 +1,4 @@
-package beast.cart.web.jwt;
+package beast.auth.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;

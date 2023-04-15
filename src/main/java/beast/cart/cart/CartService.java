@@ -1,6 +1,6 @@
 package beast.cart.cart;
 
-import beast.cart.models.UserCart;
+import beast.cart.model.UserCart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

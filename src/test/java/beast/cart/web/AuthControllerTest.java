@@ -1,10 +1,11 @@
 package beast.cart.web;
 
-import beast.cart.models.UserDetails;
-import beast.cart.user.SignupService;
-import beast.cart.web.jwt.JwtUtils;
-import beast.cart.web.payload.request.LoginRequest;
-import beast.cart.web.payload.request.SignupRequest;
+import beast.auth.model.UserDetails;
+import beast.auth.user.SignupService;
+import beast.auth.jwt.JwtUtils;
+import beast.auth.model.LoginRequest;
+import beast.auth.model.SignupRequest;
+import beast.auth.web.AuthController;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;

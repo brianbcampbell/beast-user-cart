@@ -1,6 +1,6 @@
-package beast.cart.user;
+package beast.auth.user;
 
-import beast.cart.models.UserDetails;
+import beast.auth.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package beast.cart.user;
+package beast.auth.user;
 
 import org.springframework.stereotype.Service;
 

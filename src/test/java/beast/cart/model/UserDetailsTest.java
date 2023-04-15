@@ -1,5 +1,6 @@
-package beast.cart.models;
+package beast.cart.model;
 
+import beast.auth.model.UserDetails;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;

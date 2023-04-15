@@ -1,7 +1,7 @@
 package beast.cart._testdata;
 
-import beast.cart.models.CartItem;
-import beast.cart.models.UserCart;
+import beast.cart.model.CartItem;
+import beast.cart.model.UserCart;
 
 import java.util.List;
 

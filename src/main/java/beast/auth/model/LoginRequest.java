@@ -1,4 +1,4 @@
-package beast.cart.web.payload.request;
+package beast.auth.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
